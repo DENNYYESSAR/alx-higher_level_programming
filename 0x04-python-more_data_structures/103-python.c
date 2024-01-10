@@ -2,6 +2,12 @@
 #include <stdio.h>
 
 /**
+ * print_python_bytes - Prints information about Python bytes objects
+ * @p: Pointer to a Python object (assumed to be bytes)
+ */
+void print_python_bytes(PyObject *p);
+
+/**
  * print_python_list - Prints information about Python lists
  * @p: Pointer to a Python object (assumed to be a list)
  */
@@ -22,11 +28,13 @@ void print_python_list(PyObject *p)
 		{
 			element = PyList_GetItem(p, i);
 			printf("Element %ld: %s\n", i, Py_TYPE(element)->tp_name);
+			if (PyBytes_Check(element))
+				print_python_bytes(element);
 		}
 	}
 	else
 	{
-		printf("	[ERROR] Invalid List Object\n");
+		printf("[ERROR] Invalid List Object\n");
 	}
 }
 
@@ -39,15 +47,16 @@ void print_python_bytes(PyObject *p)
 	Py_ssize_t i, size;
 	char *str;
 
-	printf("[.] Python bytes info\n");
+	printf("[.] bytes object info\n");
 
 	if (PyBytes_Check(p))
 	{
 		size = PyBytes_Size(p);
 		str = PyBytes_AsString(p);
 
-		printf("[.] Size of the Python Bytes = %ld\n", size);
-		printf("[.] First %ld bytes: ", size < 10 ? size : 10);
+		printf("size: %ld\n", size);
+		printf("trying string: %s\n", str);
+		printf("first %ld bytes: ", size < 10 ? size : 10);
 
 		for (i = 0; i < size && i < 10; i++)
 		{
@@ -59,7 +68,7 @@ void print_python_bytes(PyObject *p)
 	}
 	else
 	{
-		printf("	[ERROR] Invalid Bytes Object\n");
+		printf("[ERROR] Invalid Bytes Object\n");
 	}
 }
 
