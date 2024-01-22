@@ -10,7 +10,7 @@ def safe_print_integer(value):
         True if value is an integer and has been correctly printed, False otherwise.
     """
     try:
-        print("{:d}".format(int(value)))
-        return True
+        print("{:d}".format(value))
+        return (True)
     except (ValueError, TypeError):
-        return False
+        return (False)
