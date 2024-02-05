@@ -4,7 +4,8 @@
 
 class MyInt(int):
     """
-    A class representing a rebellious integer that inverts the == and != operators.
+    A class representing a rebellious integer that
+    inverts the == and != operators.
     """
 
     def __eq__(self, other):
