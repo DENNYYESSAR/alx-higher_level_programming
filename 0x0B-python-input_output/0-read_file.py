@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Function to read a text file (UTF8) and print its content to stdout.
 """
