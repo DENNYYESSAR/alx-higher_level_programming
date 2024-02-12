@@ -124,33 +124,48 @@ class Rectangle(Base):
         Args:
             *args: Positional arguments for id (first only).
             **kwargs: Keyword arguments for any attribute.
+
+        Raises:
+            TypeError: If any non-ID argument is not an integer.
+            ValueError: If width or height is not positive, or if x or
+            y is less than 0.
         """
 
-        # Process positional arguments (no-keyword arguments)
-        if args:
-            if len(args) >= 1:
-                self.id = args[0]
-            if len(args) >= 2:
-                self.width = args[1]
-            if len(args) >= 3:
-                self.height = args[2]
-            if len(args) >= 4:
-                self.x = args[3]
-            if len(args) >= 5:
-                self.y = args[4]
+        # Process positional arguments (only for id)
+        if len(args) >= 1:
+            if not isinstance(args[0], int):
+                raise TypeError("id must be an integer")
+            self.id = args[0]
 
-        # Process keyword arguments (override positional arguments if present)
-        if kwargs:
-            if 'id' in kwargs:
-                self.id = kwargs['id']
-            if 'width' in kwargs:
-                self.width = kwargs['width']
-            if 'height' in kwargs:
-                self.height = kwargs['height']
-            if 'x' in kwargs:
-                self.x = kwargs['x']
-            if 'y' in kwargs:
-                self.y = kwargs['y']
+        # Process keyword arguments (override positional id if present)
+        if "id" in kwargs:
+            if not isinstance(kwargs["id"], int):
+                raise TypeError("id must be an integer")
+            self.id = kwargs["id"]
+        if "width" in kwargs:
+            if not isinstance(kwargs["width"], int):
+                raise TypeError("width must be an integer")
+            if kwargs["width"] <= 0:
+                raise ValueError("width must be > 0")
+            self.width = kwargs["width"]
+        if "height" in kwargs:
+            if not isinstance(kwargs["height"], int):
+                raise TypeError("height must be an integer")
+            if kwargs["height"] <= 0:
+                raise ValueError("height must be > 0")
+            self.height = kwargs["height"]
+        if "x" in kwargs:
+            if not isinstance(kwargs["x"], int):
+                raise TypeError("x must be an integer")
+            if kwargs["x"] < 0:
+                raise ValueError("x must be >= 0")
+            self.x = kwargs["x"]
+        if "y" in kwargs:
+            if not isinstance(kwargs["y"], int):
+                raise TypeError("y must be an integer")
+            if kwargs["y"] < 0:
+                raise ValueError("y must be >= 0")
+            self.y = kwargs["y"]
 
     def __str__(self):
         """
