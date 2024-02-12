@@ -5,6 +5,7 @@
 import unittest
 from models.square import Square
 
+
 class TestSquare(unittest.TestCase):
     def test_init(self):
         s = Square(10, 20, 30, 40)
@@ -20,6 +21,7 @@ class TestSquare(unittest.TestCase):
     def test_str(self):
         s = Square(3, 4, 5, 6)
         self.assertEqual(str(s), "[Square] (6) 4/5 - 3")
+
 
 if __name__ == '__main__':
     unittest.main()

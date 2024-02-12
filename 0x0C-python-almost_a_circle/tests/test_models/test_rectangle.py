@@ -23,5 +23,6 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(3, 4, 5, 6, 7)
         self.assertEqual(str(r), "[Rectangle] (7) 5/6 - 3/4")
 
+
 if __name__ == '__main__':
     unittest.main()

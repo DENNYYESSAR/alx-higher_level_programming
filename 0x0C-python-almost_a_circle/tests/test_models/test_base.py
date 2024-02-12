@@ -22,5 +22,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(Base.to_json_string(None), "[]")
         self.assertEqual(Base.to_json_string([]), "[]")
 
+
 if __name__ == '__main__':
     unittest.main()
