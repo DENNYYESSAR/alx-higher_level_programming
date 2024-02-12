@@ -52,7 +52,8 @@ class Base:
 
         filename = cls.__name__ + ".json"
         with open(filename, "w") as file:
-            json_str = cls.to_json_string([obj.to_dictionary() for obj in list_objs])
+            json_str = cls.to_json_string([
+                obj.to_dictionary() for obj in list_objs])
             file.write(json_str)
 
     @classmethod
@@ -68,7 +69,8 @@ class Base:
 
         filename = cls.__name__ + ".json"
         with open(filename, "w") as file:
-            json_str = cls.to_json_string([obj.to_dictionary() for obj in list_objs])
+            json_str = cls.to_json_string([
+                obj.to_dictionary() for obj in list_objs])
             file.write(json_str)
 
     @staticmethod
@@ -92,7 +94,8 @@ class Base:
         Returns an instance with all attributes already set.
 
         Args:
-            **dictionary: Double pointer to a dictionary containing attribute values.
+            **dictionary: Double pointer to a dictionary containing attribute
+            values.
 
         Returns:
             obj: Instance with attributes set.
@@ -104,7 +107,7 @@ class Base:
         else:
             raise ValueError("Unsupported class type")
 
-        dummy.update(**dictionary)  # Use the update method to assign attributes
+        dummy.update(**dictionary)
         return dummy
 
     @classmethod
@@ -140,7 +143,8 @@ class Base:
             writer = csv.writer(file)
             for obj in list_objs:
                 if cls.__name__ == "Rectangle":
-                    writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                    writer.writerow([
+                        obj.id, obj.width, obj.height, obj.x, obj.y])
                 elif cls.__name__ == "Square":
                     writer.writerow([obj.id, obj.size, obj.x, obj.y])
 
