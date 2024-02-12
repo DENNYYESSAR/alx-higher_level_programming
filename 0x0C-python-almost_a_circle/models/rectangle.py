@@ -176,6 +176,7 @@ class Rectangle(Base):
                                                        self.y,
                                                        self.width,
                                                        self.height)
+
     def to_dictionary(self):
         """
         Returns the dictionary representation of the rectangle.
