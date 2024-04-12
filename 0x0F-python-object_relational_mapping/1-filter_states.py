@@ -3,30 +3,15 @@
 import MySQLdb
 import sys
 
+
 if __name__ == "__main__":
-# Get command line arguments
-username, password, database = sys.argv[1:]
-
-# Connect to MySQL server
-db = MySQLdb.connect(
-    host="localhost",
-    port=3306,
-    user=username,
-    passwd=password,
-    db=database
-)
-
-# Create a cursor object
-cursor = db.cursor()
-
-# Execute query to select states starting with 'N'
-cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
-states = cursor.fetchall()
-
-# Print the results
-for state in states:
-    print(state)
-
-# Close cursor and database connection
-cursor.close()
-db.close()
+    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
+                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    cur = db.cursor()
+    cur.execute("""SELECT * FROM states WHERE name
+                LIKE BINARY 'N%' ORDER BY states.id""")
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
+    cur.close()
+    db.close()
