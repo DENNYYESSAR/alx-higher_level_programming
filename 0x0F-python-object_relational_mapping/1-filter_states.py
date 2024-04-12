@@ -3,6 +3,7 @@
 import MySQLdb
 import sys
 
+if __name__ == "__main__":
 # Get command line arguments
 username, password, database = sys.argv[1:]
 
@@ -19,7 +20,7 @@ db = MySQLdb.connect(
 cursor = db.cursor()
 
 # Execute query to select states starting with 'N'
-cursor.execute("SELECT DISTINCT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
 states = cursor.fetchall()
 
 # Print the results
